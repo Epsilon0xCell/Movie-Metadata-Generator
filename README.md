@@ -1,6 +1,6 @@
 ![movie-metadata-gen banner](assets/banner.png)
 
-# movie-metadata-gen
+# Movie-Metadata-Generator
 
 A small Python class for movie metadata. The `Movies` class in
 `movie-metadata.py` stores a title, director, production company, actors,
