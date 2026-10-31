@@ -41,6 +41,25 @@ normally a list of names; a single string is also accepted and is matched
 as one whole name. `Duration` and `Release_Year` may be numbers or
 numeric strings, including decimal strings such as `"200.5"`.
 
+The constructor checks the record before storing it, and raises instead
+of building a movie that would fail later:
+
+- `Title` must be a non-empty string, or `ValueError`.
+- `Actors` must be a string or a list or tuple of names, or `TypeError`.
+  (`None` used to be accepted here and then crashed `workedOnBy`.)
+- `Duration` and `Release_Year` must each convert to a number, or
+  `ValueError` naming the field and the value. Text such as `"abc"` used
+  to be stored without complaint and then crash inside
+  `requiresBathroomBreak` or `isRecent`; it is now refused at
+  construction. The values are stored as handed in, not converted, so
+  the demo's string shape still works.
+
+One caution that follows from the equality rule below: do not change
+`Title`, `Director`, or `Release_Year` on a movie after putting it in a
+set or using it as a dictionary key. The hash is built from those three
+fields, so changing one changes the hash and the movie can no longer be
+found in that container.
+
 Methods (all verified):
 
 - `requiresBathroomBreak()` - returns True when the duration is over
@@ -72,8 +91,25 @@ Methods (all verified):
 - Simulated versus real: a real movie can be watched and played; this
   class only models its metadata, which real movies also carry.
 
+## Tests
+
+```bash
+python3 -m unittest
+```
+
+18 tests in `test_movies.py`: the constructor checks above (bad
+duration, bad year, `None` duration, empty or non-string title, bad
+`Actors` type), the method boundaries (exactly 180 minutes is False,
+2020 is not recent and 2021 is, a partial name never matches, an empty
+actor list and a single string actor both answer), the string format,
+equality and hashing (including comparison against a string and
+`None`), and the demo run as a subprocess against the exact output
+above. This project reads no file, calls no service, and takes no API
+key; the metadata is whatever the caller hands to the constructor.
+
 ## Files
 
 - `movie-metadata.py` - the `Movies` class and its demo.
+- `test_movies.py` - the test suite.
 - `assets/banner.png`, `assets/logo.png` - project branding.
 - `LICENSE` - GPL-3.0.

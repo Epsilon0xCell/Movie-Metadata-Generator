@@ -23,6 +23,28 @@ class Movies:
 
     def __init__(self, Title, Director, Production_Company, Actors, Duration,
                  Release_Year):
+        # I check the record at the door, in this one place, instead of
+        # letting each method fail on its own later. A non numeric
+        # Duration or Release_Year used to survive construction and then
+        # crash inside requiresBathroomBreak or isRecent with a float()
+        # message that named no field. Now the error happens here, at
+        # the line that built the bad record, and it names the field and
+        # the value. A numeric string like "136" is still fine, and the
+        # values are stored as handed in, not converted.
+        if not isinstance(Title, str) or not Title.strip():
+            raise ValueError("Title must be a non-empty string, "
+                             f"got {Title!r}")
+        if not isinstance(Actors, (str, list, tuple)):
+            raise TypeError("Actors must be a name or a list of names, "
+                            f"got {type(Actors).__name__}")
+        for field, value in (("Duration", Duration),
+                             ("Release_Year", Release_Year)):
+            try:
+                float(value)
+            except (TypeError, ValueError):
+                raise ValueError(
+                    f"{field} must be a number or a numeric string, "
+                    f"got {value!r}") from None
         self.Title = Title
         self.Director = Director
         self.Production_Company = Production_Company
@@ -50,8 +72,8 @@ class Movies:
         # never match, so I compare the string as a whole here.
         if isinstance(self.Actors, str):
             return self.Actors == name
-        # On a list this is an exact element match. "Keanu" does not match
-        # "Keanu Reeves", and I want it that way.
+        # On a list or tuple this is an exact element match. "Keanu"
+        # does not match "Keanu Reeves", and I want it that way.
         return name in self.Actors
 
     def isRecent(self):
