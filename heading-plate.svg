@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 44" role="img" aria-label="Order slip header strip">
+<rect x="0" y="4" width="1200" height="36" fill="#f3f0e6"/>
+<line x1="0" y1="16" x2="1200" y2="16" stroke="#cfccc2" stroke-width="2"/>
+<line x1="0" y1="28" x2="1200" y2="28" stroke="#cfccc2" stroke-width="2"/>
+<line x1="0" y1="4" x2="1200" y2="4" stroke="#aca078" stroke-width="4"/>
+<g stroke="#4a5058" stroke-width="5" fill="none">
+<line x1="1120" y1="30" x2="1176" y2="12"/><line x1="1122" y1="14" x2="1174" y2="28"/>
+<circle cx="1112" cy="32" r="7"/><circle cx="1114" cy="13" r="7"/>
+</g>
+</svg>

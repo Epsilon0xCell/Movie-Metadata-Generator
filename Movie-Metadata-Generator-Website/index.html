@@ -3,162 +3,131 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Movie Metadata Generator: what it is, how it runs, where it stops</title>
-<meta name="description" content="Movie Metadata Generator is one of my projects. The README in the repo is short, so this page sticks to what the files themselves show.">
+<title>Movie-Metadata-Generator: the parcels desk</title>
+<meta name="description" content="State a film's six particulars and watch its parcel get wrapped, tagged and stamped, the way the Movies class in this repo works.">
 <style>
-:root {
-  --bg: #d6e0e6; --panel: #e8f0f4; --ink: #122230;
-  --mut: #ffffff;
-  --acc: #c4542c; --acc2: #266e82;
-  --line: #e8f0f4;
-}
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--ink);
-  font-family: ' Gill Sans', 'Segoe UI', sans-serif; line-height: 1.55; }
-code, pre, .mono { font-family: 'SF Mono', monospace; }
-a { color: var(--acc2); }
-.hero { padding: 3rem 6vw 1rem; }
-.hero img.banner { width: 100%; height: auto; border: 1px solid var(--line);
-  border-radius: 10px; }
-.logo { width: 92px; height: 92px; border-radius: 18px;
-  border: 1px solid var(--line); }
-h1 { font-size: 2.4rem; margin: 0.4em 0 0.1em; }
-h2 { border-bottom: 2px solid var(--acc); padding-bottom: 0.2em;
-  margin-top: 2em; }
-.lede { font-size: 1.15rem; max-width: 62ch; }
-main { padding: 0 6vw 3rem; max-width: 1180px; margin: 0 auto; }
-.grid { display: grid; gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
-.card { background: var(--panel); border: 1px solid var(--line);
-  border-radius: 12px; padding: 1rem 1.2rem; }
-.card.pop { animation: rise 0.7s ease both; }
-@keyframes rise { from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: none; } }
-pre.code { background: #101014; color: #e8e6df; padding: 1rem 1.2rem;
-  border-radius: 12px; overflow-x: auto; font-size: 0.86rem;
-  border-left: 5px solid var(--acc); }
-table { border-collapse: collapse; width: 100%; }
-td, th { border-bottom: 1px solid var(--line); padding: 0.45rem 0.6rem;
-  text-align: left; }
-.shots { display: grid; gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-.shots img { width: 100%; height: auto; border: 1px solid var(--line);
-  border-radius: 10px; background: #f4f1e8; }
-footer { padding: 2rem 6vw; border-top: 1px solid var(--line);
-  color: var(--mut); }
-.rail { display: flex; gap: 1.2rem; align-items: flex-start; }
-.rail nav { position: sticky; top: 1rem; min-width: 180px; }
-@media (max-width: 760px) { .rail { flex-direction: column; }
-  .rail nav { position: static; } }
-@media (prefers-reduced-motion: reduce) {
-  .card.pop { animation: none; } * { scroll-behavior: auto; } }
+@font-face{font-family:'Covered By Your Grace';src:url('fonts/CoveredByYourGrace-Regular.ttf') format('truetype')}
+@font-face{font-family:'Cabin';src:url('fonts/Cabin-Regular.ttf') format('truetype')}
+*{box-sizing:border-box}
+body{margin:0;background:#a8a49a;color:#34383e;font-family:'Cabin',sans-serif;line-height:1.6}
+header{max-width:1040px;margin:0 auto;padding:34px 22px 2px}
+header img{width:100%;height:auto;display:block}
+h1{font-family:'Covered By Your Grace',cursive;font-weight:400;font-size:2.4rem;margin:16px 0 2px;color:#34383e}
+h2{font-family:'Covered By Your Grace',cursive;font-weight:400;font-size:1.8rem;margin:0 0 8px}
+main{max-width:1040px;margin:0 auto;padding:8px 22px 30px}
+.rail{border-top:5px solid #4a5058;margin:26px 0 14px}
+.bench{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+@media(max-width:760px){.bench{grid-template-columns:1fr}}
+.slip{background:#f3f0e6;padding:20px 24px;position:relative}
+.slip::before{content:'';position:absolute;top:10px;left:0;right:0;border-top:3px solid #aca078}
+.slip label{display:block;margin:12px 0 2px;font-size:.92rem;color:#5a5e54}
+.slip input{width:100%;border:none;border-bottom:2px solid #b9b4a4;background:transparent;font-family:'Cabin',sans-serif;font-size:1.05rem;padding:3px 2px;color:#34383e}
+.parcel{background:#f3f0e6;padding:26px 28px;position:relative;min-height:300px}
+.parcel::before{content:'';position:absolute;left:50%;top:0;bottom:0;border-left:4px solid #aca078}
+.parcel::after{content:'';position:absolute;top:50%;left:0;right:0;border-top:4px solid #aca078}
+.tag{background:#b2b0a8;padding:14px 18px;max-width:300px;margin:22px auto 0;position:relative;z-index:2;font-family:'Covered By Your Grace',cursive;font-size:1.25rem;line-height:1.45;color:#34383e;transform:rotate(-1deg)}
+.tag .row{min-height:1.45em}
+.stamps{margin-top:18px;position:relative;z-index:2;text-align:center}
+.stamp{display:inline-block;border:3px solid #8a8444;color:#6d683a;padding:2px 12px;margin:4px;font-family:'Cabin',sans-serif;font-weight:700;letter-spacing:.04em;transform:rotate(-2deg);background:rgba(243,240,230,.85)}
+.weight{display:inline-flex;align-items:center;gap:12px;background:none;border:none;cursor:pointer;font-family:'Cabin',sans-serif;font-size:1rem;color:#f3f0e6;margin:8px 10px 4px 0;padding:0}
+.weight .disc{flex:0 0 46px;height:46px;border-radius:50%;background:radial-gradient(circle at 38% 34%,#c8ccd2,#4a5058 68%);border:3px solid #b08e4a;position:relative;transition:filter .15s,transform .1s}
+.weight .disc::after{content:'';position:absolute;inset:6px;border-radius:50%;border:2px solid rgba(176,142,74,.7)}
+.weight:hover .disc{filter:brightness(1.35)}
+.weight:active .disc{transform:translateY(2px)}
+a.weight{text-decoration:none}
+.shelf{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.mini{background:#f3f0e6;padding:18px 20px 14px;position:relative}
+.mini::before{content:'';position:absolute;left:50%;top:0;bottom:0;border-left:3px solid #aca078}
+.mini::after{content:'';position:absolute;top:44%;left:0;right:0;border-top:3px solid #aca078}
+.mini .tag{margin-top:10px;font-size:1.1rem}
+.string{border:none;border-top:3px solid #aca078;position:relative;margin:30px 0}
+.string::before{content:'';position:absolute;left:50%;top:-10px;width:16px;height:16px;margin-left:-8px;border-radius:50%;border:3px solid #aca078;background:#a8a49a}
+.string.minor{border-top:2px solid #aca078;width:40%;margin:24px auto}
+.string.minor::before{display:none}
+.sheet{background:#f3f0e6;padding:18px 22px;position:relative;margin:14px 0}
+.sheet::before{content:'';position:absolute;top:0;right:0;border-style:solid;border-width:0 26px 26px 0;border-color:#a8a49a #a8a49a #ddd8c8 #ddd8c8}
+pre{background:#34383e;color:#f3f0e6;padding:14px 18px;overflow-x:auto}
+code{font-family:Menlo,monospace}
+footer{max-width:1040px;margin:0 auto;padding:4px 22px 42px;color:#4c4a42}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.shots img{width:100%;height:auto;background:#f4f1e8;display:block}
 </style>
 </head>
-<body class="layout-poster">
-<!-- This page exists for Movie-Metadata-Generator alone: the layout (poster),
-     the colors, and the type were picked for this project, not
-     shared with the other project pages. The code block below is
-     copied from the file it names, line for line. If it looks
-     plain, that is because the project is plain, and I would
-     rather the page match the project than dress it up. The one
-     thing I will not do here is oversell: what this project does
-     not do is stated on the page, not hidden from it. -->
-<header class="hero">
-  <img class="logo" src="assets/logo.png" alt="Movie Metadata Generator logo">
-  <img class="banner" src="assets/banner.png" alt="">
-  <h1>Movie Metadata Generator</h1>
-  <p class="mono"><a href="https://github.com/Epsilon0xCell/Movie-Metadata-Generator">github.com/Epsilon0xCell/Movie-Metadata-Generator</a></p>
+<body>
+<header>
+<img src="assets/banner.png" alt="The butcher's counter with the shop name lettered on the glass">
+<h1>Movie-Metadata-Generator</h1>
+<p>Films arrive as particulars and leave as parcels. State the six, and the tag is written.</p>
 </header>
-
 <main>
-  <section class="rail">
-    <nav aria-label="on this page">
-      <p class="mono"><a href="#run">Run it</a><br>
-      <a href="#files">The files</a><br>
-      <a href="#sheets">The sheets</a><br>
-      <a href="https://github.com/Epsilon0xCell/Movie-Metadata-Generator">The repo</a></p>
-    </nav>
-    <div>
-      <p class="lede">Movie Metadata Generator is one of my projects. The README in the repo is short, so this page sticks to what the files themselves show.</p>
-      <div class="grid">
-        <div class="card pop"><h3>What it is</h3>
-          <p>Movie Metadata Generator: 3 files, 83 counted
-          lines across Python 68, Markdown 15. One job, done in the
-          open, in files you can read.</p></div>
-        <div class="card pop"><h3>The biggest piece</h3>
-          <p><code>movie-metadata.py</code> carries the most
-          lines. If the project grows, that file is where the growth
-          lands first, for better or worse.</p></div>
-        <div class="card pop"><h3>The honest gap</h3>
-          <p>No test files yet. That is the honest gap, and the roadmap in the visuals folder says what the first one should cover.</p></div>
-      </div>
-      <section id="run">
-        <h2>Run it</h2>
-        <p>The repo README has the exact commands for this one. The
-        shape is the shape for most of my projects: clone it, read the
-        top file first so you know what will happen, then run it on
-        something you do not mind breaking.</p>
-        <p class="mono">$ git clone https://github.com/Epsilon0xCell/Movie-Metadata-Generator.git<br>$ cd Movie-Metadata-Generator</p>
-      </section>
-      
-  <section aria-label="real code">
-    <h2>The code, as it sits in the repo</h2>
-    <p>From <code>movie-metadata.py</code>, line 9 on. I did
-    not tidy it for the page. What you see is what the file has.</p>
-    <pre class="code"><code>
-
-class Movies:
-  __slots__ = [
-      &quot;Title&quot;, &quot;Director&quot;, &quot;Production_Company&quot;, &quot;Actors&quot;, &quot;Duration&quot;,
-      &quot;Release_Year&quot;
-  ]
-
-  def __init__(self, Title, Director, Production_Company, Actors, Duration,
-               Release_Year):
-    self.Title = Title
-    self.Director = Director
-    self.Production_Company = Production_Company
-    self.Actors = Actors
-    self.Duration = Duration
-    self.Release_Year = Release_Year
-
-  def requiresBathroomBreak(self):
-    if int(self.Duration) &gt; 180:
-      return True
-    else:
-      return False</code></pre>
-  </section>
-      <section id="files">
-        <h2>The files that matter</h2>
-        <table><tr><th>File</th><th>Lines</th></tr>
-        <tr><td><code>movie-metadata.py</code></td><td>68</td></tr>
-        <tr><td><code>README.md</code></td><td>15</td></tr>
-        <tr><td><code>LICENSE</code></td><td>0</td></tr>
-        </table>
-        <p>Names doing the work: <span class="mono">Movies, __init__, requiresBathroomBreak, workedOnBy, isRecent, __str__, __eq__</span>.</p>
-      </section>
-      <section id="sheets">
-        <h2>Drawn by hand</h2>
-        <p>I sketch my projects on notebook paper so I have to
-        understand them well enough to draw them. The full set,
-        with the counts and how they were counted, is the
-        <a href="https://github.com/Epsilon0xCell/Movie-Metadata-Generator/tree/main/Movie-Metadata-Generator-Visuals">Movie-Metadata-Generator-Visuals</a>
-        folder in the repo. Nothing is drawn over the binder holes.
-        That is a rule, not a style.</p>
-        <div class="shots">
-          <img src="assets/architecture.png" alt="Hand drawn architecture sheet for Movie Metadata Generator">
-          <img src="assets/flowchart.png" alt="Hand drawn flowchart sheet for Movie Metadata Generator">
-          <img src="assets/product-map.png" alt="Hand drawn product map sheet for Movie Metadata Generator">
-        </div>
-      </section>
-    </div>
-  </section>
+<div class="rail"></div>
+<h2>The wrapping bench</h2>
+<div class="bench">
+<form class="slip" id="slip" aria-label="Order slip">
+<label for="fTitle">Title</label><input id="fTitle" value="The Matrix">
+<label for="fDirector">Director</label><input id="fDirector" value="Wachowski">
+<label for="fCompany">Production company</label><input id="fCompany" value="Warner Bros">
+<label for="fActors">Actors, one per line</label><input id="fActors" value="Keanu Reeves, George Lucas">
+<label for="fDuration">Duration, in minutes</label><input id="fDuration" value="136">
+<label for="fYear">Release year</label><input id="fYear" value="1999">
+</form>
+<div>
+<div class="parcel" aria-label="The parcel and its tag">
+<div class="tag">
+<div class="row" id="tLine1">The Matrix (Film)</div>
+<div class="row" id="tLine2">Wachowski (Director)</div>
+<div class="row" id="tLine3">Warner Bros (Production Company)</div>
+<div class="row" id="tLine4">1999 (Release Year)</div>
+</div>
+<div class="stamps">
+<span class="stamp" id="sRecent">recent: False</span>
+<span class="stamp" id="sBreak">bathroom break: False</span>
+<span class="stamp" id="sLucas">worked on by George Lucas: True</span>
+</div>
+</div>
+<p>The tag is written the way the class prints a film: title, director, production company and release year, each followed by its label. The stamps are the class's own questions, answered by its own rules: recent means a release year after 2020, and a bathroom break means a duration over 180 minutes. Try a year of 2021, or a duration of 200, and watch the stamps change.</p>
+</div>
+</div>
+<hr class="string">
+<h2>The shelf</h2>
+<p>The demo in the repo builds two records of the same film, and the class calls them equal, because equality rests on title, director and release year alone. Both parcels stand here.</p>
+<div class="shelf">
+<div class="mini"><div class="tag">The Matrix (Film)<br>Wachowski (Director)<br>Warner Bros (Production Company)<br>1999 (Release Year)</div><p>First demo record. Duration 136, stored as the string it was handed in.</p></div>
+<div class="mini"><div class="tag">The Matrix (Film)<br>Wachowski (Director)<br>Warner Bros (Production Company)<br>1999 (Release Year)</div><p>Second demo record. Equal to the first, and hashes equally, so the two can sit in one set.</p></div>
+<div class="mini"><div class="tag">Your film, on the bench above</div><p>Every new set of particulars wraps a new parcel. Nothing is fetched from anywhere; the tag says only what it was handed.</p></div>
+</div>
+<hr class="string minor">
+<h2>How the class keeps its records</h2>
+<div class="sheet"><p>The <code>Movies</code> class in <code>movie-metadata.py</code> stores six fields in order: <code>Title</code>, <code>Director</code>, <code>Production_Company</code>, <code>Actors</code>, <code>Duration</code> and <code>Release_Year</code>. The constructor checks the record before storing it: a title must be a non-empty string, actors must be a name or a list of names, and duration and year must each convert to a number. Values are stored as handed in, not converted.</p>
+<p>Its questions are <code>isRecent()</code>, <code>requiresBathroomBreak()</code> and <code>workedOnBy(name)</code>, which answers for the director or any actor, matching whole names only. Run the demo with <code>python3 movie-metadata.py</code>; its verified output is printed in the repo README, and 18 tests in <code>test_movies.py</code> cover the constructor checks and the method boundaries.</p></div>
+<p>
+<a class="weight" href="https://github.com/Epsilon0xCell/Movie-Metadata-Generator"><span class="disc"></span>The repo on GitHub</a>
+<a class="weight" href="https://github.com/Epsilon0xCell/Movie-Metadata-Generator/tree/main/Movie-Metadata-Generator-Visuals"><span class="disc"></span>The hand drawn sheets</a>
+</p>
+<div class="shots">
+<img src="assets/architecture.png" alt="Hand drawn architecture sheet for Movie Metadata Generator">
+<img src="assets/flowchart.png" alt="Hand drawn flowchart sheet for Movie Metadata Generator">
+<img src="assets/product-map.png" alt="Hand drawn product map sheet for Movie Metadata Generator">
+</div>
 </main>
 <footer>
-  <p>Movie Metadata Generator is one of my projects. This page was written
-  from the repo itself on 2026-10-30: the counts are the
-  repo's counts, the code is the repo's code, and the gaps are the
-  repo's gaps.</p>
+<p>Movie-Metadata-Generator, wrapped at the counter. This tool never shows a film; it labels one. Fonts: Covered By Your Grace and Cabin, both SIL Open Font License 1.1, license texts beside the font files.</p>
 </footer>
+<script>
+function val(id){return document.getElementById(id).value.trim();}
+function wrap(){
+  var title=val('fTitle')||'Untitled', dir=val('fDirector'), comp=val('fCompany'), year=val('fYear');
+  var dur=parseFloat(val('fDuration')), yr=parseFloat(year);
+  document.getElementById('tLine1').textContent=title+' (Film)';
+  document.getElementById('tLine2').textContent=dir+' (Director)';
+  document.getElementById('tLine3').textContent=comp+' (Production Company)';
+  document.getElementById('tLine4').textContent=year+' (Release Year)';
+  document.getElementById('sRecent').textContent='recent: '+(!isNaN(yr)&&yr>2020?'True':'False');
+  document.getElementById('sBreak').textContent='bathroom break: '+(!isNaN(dur)&&dur>180?'True':'False');
+  var actors=val('fActors').split(',').map(function(s){return s.trim();});
+  document.getElementById('sLucas').textContent='worked on by George Lucas: '+((dir==='George Lucas'||actors.indexOf('George Lucas')>=0)?'True':'False');
+}
+document.getElementById('slip').addEventListener('input',wrap); wrap();
+</script>
 </body>
 </html>

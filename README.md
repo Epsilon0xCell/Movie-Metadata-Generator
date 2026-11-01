@@ -1,14 +1,27 @@
-![movie-metadata-gen banner](assets/banner.png)
+![Intro: the butcher's counter at first light, paper hanging over the edge and string coiled where it fell](intro-banner.png)
+
 
 # Movie-Metadata-Generator
+
+![Banner](assets/banner.png)
+
+![Scene](scene.svg)
 
 A small Python class for movie metadata. The `Movies` class in
 `movie-metadata.py` stores a title, director, production company, actors,
 duration, and release year, and answers simple questions about the movie.
 
+![Separator](sep-heavy.svg)
+
+![Order slip header](heading-plate.svg)
+
 ## Requirements
 
 - Python 3, standard library only.
+
+![Separator](sep-light.svg)
+
+![Order slip header](heading-plate.svg)
 
 ## Running the demo
 
@@ -54,6 +67,8 @@ of building a movie that would fail later:
   construction. The values are stored as handed in, not converted, so
   the demo's string shape still works.
 
+> Bench note, in pencil: duration is stored as given, never converted. A string of "136" stays a string, and the questions convert it when they answer.
+
 One caution that follows from the equality rule below: do not change
 `Title`, `Director`, or `Release_Year` on a movie after putting it in a
 set or using it as a dictionary key. The hash is built from those three
@@ -66,6 +81,8 @@ Methods (all verified):
   180 minutes, otherwise False.
 - `isRecent()` - returns True when the release year is after 2020,
   otherwise False.
+
+> Bench note, in pencil: the recent verdict depends only on the stored year. After 2020 is recent, 2020 itself is not, and nothing else about the film enters into it.
 - `workedOnBy(name)` - returns True when `name` is the director or is
   one of the actors, otherwise False. It returns False (and does not
   raise) for an empty actor list.

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" role="img" aria-label="The wrapping sequence: a sheet folds into a parcel on the counter while hooks sway and the scale settles">
+<rect width="1200" height="340" fill="#8f8b82"/>
+<line x1="0" y1="52" x2="1200" y2="44" stroke="#4a5058" stroke-width="9"/>
+<g stroke="#34383e" stroke-width="6" fill="none">
+<path d="M120,50 q10,26 -4,40"><animateTransform attributeName="transform" type="rotate" values="-3 120 50;3 120 50;-3 120 50" dur="7s" repeatCount="indefinite"/></path>
+<path d="M330,48 q10,26 -4,40"><animateTransform attributeName="transform" type="rotate" values="3 330 48;-3 330 48;3 330 48" dur="9s" repeatCount="indefinite"/></path>
+<path d="M540,47 q10,26 -4,40"><animateTransform attributeName="transform" type="rotate" values="-2 540 47;2 540 47;-2 540 47" dur="8s" repeatCount="indefinite"/></path>
+<path d="M750,46 q10,26 -4,40"><animateTransform attributeName="transform" type="rotate" values="2 750 46;-2 750 46;2 750 46" dur="10s" repeatCount="indefinite"/></path>
+<path d="M960,45 q10,26 -4,40"><animateTransform attributeName="transform" type="rotate" values="-3 960 45;3 960 45;-3 960 45" dur="7.5s" repeatCount="indefinite"/></path>
+</g>
+<g>
+<animateTransform attributeName="transform" type="rotate" values="0 1050 120;1.6 1050 120;0 1050 120" keyTimes="0;0.82;1" dur="16s" repeatCount="indefinite"/>
+<line x1="1050" y1="66" x2="1050" y2="150" stroke="#b08e4a" stroke-width="7"/>
+<line x1="950" y1="72" x2="1150" y2="72" stroke="#b08e4a" stroke-width="6"/>
+<ellipse cx="950" cy="98" rx="34" ry="9" fill="#b08e4a"/><ellipse cx="1150" cy="98" rx="34" ry="9" fill="#b08e4a"/>
+</g>
+<rect x="0" y="196" width="1200" height="144" fill="#a8a49a"/>
+<rect x="0" y="196" width="1200" height="14" fill="#bcb8ae"/>
+<g>
+<rect x="380" y="238" width="330" height="12" fill="#f3f0e6">
+<animate attributeName="width" values="0;330;330;330;0" keyTimes="0;0.14;0.8;0.92;1" dur="16s" repeatCount="indefinite"/>
+</rect>
+<g opacity="0">
+<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.14;0.2;0.92;1" dur="16s" repeatCount="indefinite"/>
+<rect x="380" y="226" width="330" height="86" fill="#f3f0e6" stroke="#cfccc2" stroke-width="2"/>
+<polygon points="380,226 545,269 380,312" fill="none" stroke="#cfccc2" stroke-width="2"/>
+<polygon points="710,226 545,269 710,312" fill="none" stroke="#cfccc2" stroke-width="2"/>
+</g>
+<g opacity="0" stroke="#aca078" stroke-width="5">
+<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.34;0.42;0.92;1" dur="16s" repeatCount="indefinite"/>
+<line x1="545" y1="226" x2="545" y2="312"/><line x1="380" y1="269" x2="710" y2="269"/>
+</g>
+<rect x="586" y="262" width="86" height="52" fill="#b2b0a8" opacity="0">
+<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.5;0.58;0.92;1" dur="16s" repeatCount="indefinite"/>
+</rect>
+</g>
+<g>
+<polygon points="60,318 300,312 306,340 66,340" fill="#f3f0e6"/>
+<polygon points="306,340 300,312 282,318 288,340" fill="#e3dfd2">
+<animate attributeName="opacity" values="1;0.35;1" dur="5s" repeatCount="indefinite"/>
+</polygon>
+</g>
+</svg>
