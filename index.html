@@ -3,65 +3,68 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Movie-Metadata-Generator: the parcels desk</title>
-<meta name="description" content="State a film's six particulars and watch its parcel get wrapped, tagged and stamped, the way the Movies class in this repo works.">
+<title>Movie-Metadata-Generator: the lightbox table</title>
+<meta name="description" content="State a film's six particulars and read them frame by frame on the lightbox, the way the Movies class in this repo works.">
 <style>
-@font-face{font-family:'Covered By Your Grace';src:url('fonts/CoveredByYourGrace-Regular.ttf') format('truetype')}
-@font-face{font-family:'Cabin';src:url('fonts/Cabin-Regular.ttf') format('truetype')}
+@font-face{font-family:'Codystar';src:url('fonts/Codystar-Regular.ttf') format('truetype')}
+@font-face{font-family:'Space Grotesk';src:url('fonts/SpaceGrotesk-Regular.ttf') format('truetype');font-weight:400}
+@font-face{font-family:'Space Grotesk';src:url('fonts/SpaceGrotesk-Bold.ttf') format('truetype');font-weight:700}
 *{box-sizing:border-box}
-body{margin:0;background:#a8a49a;color:#34383e;font-family:'Cabin',sans-serif;line-height:1.6}
-header{max-width:1040px;margin:0 auto;padding:34px 22px 2px}
-header img{width:100%;height:auto;display:block}
-h1{font-family:'Covered By Your Grace',cursive;font-weight:400;font-size:2.4rem;margin:16px 0 2px;color:#34383e}
-h2{font-family:'Covered By Your Grace',cursive;font-weight:400;font-size:1.8rem;margin:0 0 8px}
+body{margin:0;background:#0e0e10;color:#26241e;font-family:'Space Grotesk',sans-serif;line-height:1.6}
+header{max-width:1040px;margin:0 auto;padding:34px 22px 2px;color:#f2eee1}
+header img{width:100%;height:auto;display:block;border:2px solid #3a3a40}
+h1{font-family:'Codystar',monospace;font-weight:400;font-size:2.2rem;margin:16px 0 2px;color:#f2eee1;letter-spacing:.03em}
+h2{font-family:'Codystar',monospace;font-weight:400;font-size:1.7rem;margin:0 0 8px;color:#f2eee1;letter-spacing:.03em}
 main{max-width:1040px;margin:0 auto;padding:8px 22px 30px}
-.rail{border-top:5px solid #4a5058;margin:26px 0 14px}
+.rail{height:14px;margin:26px 0 14px;background-image:radial-gradient(circle at 8px 7px,#f2eee1 3px,transparent 4px);background-size:26px 14px}
 .bench{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
 @media(max-width:760px){.bench{grid-template-columns:1fr}}
-.slip{background:#f3f0e6;padding:20px 24px;position:relative}
-.slip::before{content:'';position:absolute;top:10px;left:0;right:0;border-top:3px solid #aca078}
+.slip{background:#f6f2e6;padding:20px 24px;position:relative}
+.slip::before{content:'';position:absolute;top:10px;left:0;right:0;border-top:3px dotted #8a8574}
 .slip label{display:block;margin:12px 0 2px;font-size:.92rem;color:#5a5e54}
-.slip input{width:100%;border:none;border-bottom:2px solid #b9b4a4;background:transparent;font-family:'Cabin',sans-serif;font-size:1.05rem;padding:3px 2px;color:#34383e}
-.parcel{background:#f3f0e6;padding:26px 28px;position:relative;min-height:300px}
-.parcel::before{content:'';position:absolute;left:50%;top:0;bottom:0;border-left:4px solid #aca078}
-.parcel::after{content:'';position:absolute;top:50%;left:0;right:0;border-top:4px solid #aca078}
-.tag{background:#b2b0a8;padding:14px 18px;max-width:300px;margin:22px auto 0;position:relative;z-index:2;font-family:'Covered By Your Grace',cursive;font-size:1.25rem;line-height:1.45;color:#34383e;transform:rotate(-1deg)}
+.slip input{width:100%;border:none;border-bottom:2px solid #c9c2ab;background:transparent;font-family:'Space Grotesk',sans-serif;font-size:1.05rem;padding:3px 2px;color:#26241e}
+.parcel{background:#f6f2e6;padding:26px 28px;position:relative;min-height:300px}
+.parcel::before{content:'';position:absolute;left:50%;top:0;bottom:0;border-left:4px solid #e8b04a}
+.parcel::after{content:'';position:absolute;top:50%;left:0;right:0;border-top:4px solid #e8b04a}
+.tag{background:#eda83a;padding:14px 18px;max-width:300px;margin:22px auto 0;position:relative;z-index:2;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.15rem;line-height:1.45;color:#211c10;transform:rotate(-1deg)}
 .tag .row{min-height:1.45em}
 .stamps{margin-top:18px;position:relative;z-index:2;text-align:center}
-.stamp{display:inline-block;border:3px solid #8a8444;color:#6d683a;padding:2px 12px;margin:4px;font-family:'Cabin',sans-serif;font-weight:700;letter-spacing:.04em;transform:rotate(-2deg);background:rgba(243,240,230,.85)}
-.weight{display:inline-flex;align-items:center;gap:12px;background:none;border:none;cursor:pointer;font-family:'Cabin',sans-serif;font-size:1rem;color:#f3f0e6;margin:8px 10px 4px 0;padding:0}
-.weight .disc{flex:0 0 46px;height:46px;border-radius:50%;background:radial-gradient(circle at 38% 34%,#c8ccd2,#4a5058 68%);border:3px solid #b08e4a;position:relative;transition:filter .15s,transform .1s}
-.weight .disc::after{content:'';position:absolute;inset:6px;border-radius:50%;border:2px solid rgba(176,142,74,.7)}
+.stamp{display:inline-block;border:3px solid #b06f14;color:#7a4d0c;padding:2px 12px;margin:4px;font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:.04em;transform:rotate(-2deg);background:rgba(246,242,230,.9)}
+.weight{display:inline-flex;align-items:center;gap:12px;background:none;border:none;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:1rem;color:#f2eee1;margin:8px 10px 4px 0;padding:0}
+.weight .disc{flex:0 0 46px;height:46px;border-radius:50%;background:radial-gradient(circle at 38% 34%,#c8ccd2,#565b62 68%);border:3px solid #e08a1e;position:relative;transition:filter .15s,transform .1s}
+.weight .disc::after{content:'';position:absolute;inset:6px;border-radius:50%;border:2px solid rgba(224,138,30,.7)}
 .weight:hover .disc{filter:brightness(1.35)}
 .weight:active .disc{transform:translateY(2px)}
 a.weight{text-decoration:none}
 .shelf{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-.mini{background:#f3f0e6;padding:18px 20px 14px;position:relative}
-.mini::before{content:'';position:absolute;left:50%;top:0;bottom:0;border-left:3px solid #aca078}
-.mini::after{content:'';position:absolute;top:44%;left:0;right:0;border-top:3px solid #aca078}
-.mini .tag{margin-top:10px;font-size:1.1rem}
-.string{border:none;border-top:3px solid #aca078;position:relative;margin:30px 0}
-.string::before{content:'';position:absolute;left:50%;top:-10px;width:16px;height:16px;margin-left:-8px;border-radius:50%;border:3px solid #aca078;background:#a8a49a}
-.string.minor{border-top:2px solid #aca078;width:40%;margin:24px auto}
+.mini{background:#f6f2e6;padding:18px 20px 14px;position:relative}
+.mini::before{content:'';position:absolute;left:50%;top:0;bottom:0;border-left:3px solid #e8b04a}
+.mini::after{content:'';position:absolute;top:44%;left:0;right:0;border-top:3px solid #e8b04a}
+.mini .tag{margin-top:10px;font-size:1.05rem}
+.string{border:none;border-top:3px solid #3a3a40;position:relative;margin:30px 0}
+.string::before{content:'';position:absolute;left:50%;top:-10px;width:16px;height:16px;margin-left:-8px;border-radius:50%;border:3px solid #e08a1e;background:#0e0e10}
+.string.minor{border-top:2px solid #3a3a40;width:40%;margin:24px auto}
 .string.minor::before{display:none}
-.sheet{background:#f3f0e6;padding:18px 22px;position:relative;margin:14px 0}
-.sheet::before{content:'';position:absolute;top:0;right:0;border-style:solid;border-width:0 26px 26px 0;border-color:#a8a49a #a8a49a #ddd8c8 #ddd8c8}
-pre{background:#34383e;color:#f3f0e6;padding:14px 18px;overflow-x:auto}
+.sheet{background:#f6f2e6;padding:18px 22px;position:relative;margin:14px 0}
+.sheet::before{content:'';position:absolute;top:0;right:0;border-style:solid;border-width:0 26px 26px 0;border-color:#0e0e10 #0e0e10 #ddd8c8 #ddd8c8}
+main p{color:#c9c4b2}
+.slip p,.sheet p,.mini p,.parcel p{color:#26241e}
+pre{background:#17171a;color:#f2eee1;padding:14px 18px;overflow-x:auto}
 code{font-family:Menlo,monospace}
-footer{max-width:1040px;margin:0 auto;padding:4px 22px 42px;color:#4c4a42}
+footer{max-width:1040px;margin:0 auto;padding:4px 22px 42px;color:#9a9584}
 .shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.shots img{width:100%;height:auto;background:#f4f1e8;display:block}
+.shots img{width:100%;height:auto;background:#f6f2e6;display:block}
 </style>
 </head>
 <body>
 <header>
-<img src="assets/banner.png" alt="The butcher's counter with the shop name lettered on the glass">
+<img src="assets/banner.png" alt="A film strip running the length of a lightbox table, each amber lit frame holding one plain shape, a star, a building, a car, a clock, a tree, a figure, a boat, laid over the glow like a record being read frame by frame">
 <h1>Movie-Metadata-Generator</h1>
-<p>Films arrive as particulars and leave as parcels. State the six, and the tag is written.</p>
+<p>Films arrive as particulars and are laid out as frames. State the six, and the record is lit.</p>
 </header>
 <main>
 <div class="rail"></div>
-<h2>The wrapping bench</h2>
+<h2>The lightbox bench</h2>
 <div class="bench">
 <form class="slip" id="slip" aria-label="Order slip">
 <label for="fTitle">Title</label><input id="fTitle" value="The Matrix">
@@ -72,7 +75,7 @@ footer{max-width:1040px;margin:0 auto;padding:4px 22px 42px;color:#4c4a42}
 <label for="fYear">Release year</label><input id="fYear" value="1999">
 </form>
 <div>
-<div class="parcel" aria-label="The parcel and its tag">
+<div class="parcel" aria-label="The frame and its record">
 <div class="tag">
 <div class="row" id="tLine1">The Matrix (Film)</div>
 <div class="row" id="tLine2">Wachowski (Director)</div>
@@ -85,16 +88,16 @@ footer{max-width:1040px;margin:0 auto;padding:4px 22px 42px;color:#4c4a42}
 <span class="stamp" id="sLucas">worked on by George Lucas: True</span>
 </div>
 </div>
-<p>The tag is written the way the class prints a film: title, director, production company and release year, each followed by its label. The stamps are the class's own questions, answered by its own rules: recent means a release year after 2020, and a bathroom break means a duration over 180 minutes. Try a year of 2021, or a duration of 200, and watch the stamps change.</p>
+<p>The record is laid out the way the class prints a film: title, director, production company and release year, each followed by its label. The stamps are the class's own questions, answered by its own rules: recent means a release year after 2020, and a bathroom break means a duration over 180 minutes. Try a year of 2021, or a duration of 200, and watch the stamps change.</p>
 </div>
 </div>
 <hr class="string">
-<h2>The shelf</h2>
-<p>The demo in the repo builds two records of the same film, and the class calls them equal, because equality rests on title, director and release year alone. Both parcels stand here.</p>
+<h2>The strip</h2>
+<p>The demo in the repo builds two records of the same film, and the class calls them equal, because equality rests on title, director and release year alone. Both frames stand here.</p>
 <div class="shelf">
 <div class="mini"><div class="tag">The Matrix (Film)<br>Wachowski (Director)<br>Warner Bros (Production Company)<br>1999 (Release Year)</div><p>First demo record. Duration 136, stored as the string it was handed in.</p></div>
 <div class="mini"><div class="tag">The Matrix (Film)<br>Wachowski (Director)<br>Warner Bros (Production Company)<br>1999 (Release Year)</div><p>Second demo record. Equal to the first, and hashes equally, so the two can sit in one set.</p></div>
-<div class="mini"><div class="tag">Your film, on the bench above</div><p>Every new set of particulars wraps a new parcel. Nothing is fetched from anywhere; the tag says only what it was handed.</p></div>
+<div class="mini"><div class="tag">Your film, on the bench above</div><p>Every new set of particulars lights a new frame. Nothing is fetched from anywhere; the record says only what it was handed.</p></div>
 </div>
 <hr class="string minor">
 <h2>How the class keeps its records</h2>
@@ -111,7 +114,7 @@ footer{max-width:1040px;margin:0 auto;padding:4px 22px 42px;color:#4c4a42}
 </div>
 </main>
 <footer>
-<p>Movie-Metadata-Generator, wrapped at the counter. This tool never shows a film; it labels one. Fonts: Covered By Your Grace and Cabin, both SIL Open Font License 1.1, license texts beside the font files.</p>
+<p>Movie-Metadata-Generator, read on the lightbox. This tool never shows a film; it records one. Fonts: Codystar for display and Space Grotesk for text, both SIL Open Font License 1.1, self-hosted, license texts beside the font files.</p>
 </footer>
 <script>
 function val(id){return document.getElementById(id).value.trim();}
