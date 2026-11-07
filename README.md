@@ -1,9 +1,11 @@
-![Intro: the butcher's counter at first light, paper hanging over the edge and string coiled where it fell](intro-banner.png)
+![Intro: two film frames side by side on a glowing white lightbox, an alarm clock shape in one and a star in the other, their amber edges lit, a rough grey stone slab resting across their corner](intro-banner.png)
 
 
 # Movie-Metadata-Generator
 
-![Banner](assets/banner.png)
+<p align="center"><img src="logo.png" alt="Movie-Metadata-Generator logo: a short strip of film on a glowing white lightbox, its middle frame lit amber at the edges with a plain black clapperboard shape inside it" width="200"></p>
+
+![Banner: a film strip running the length of a lightbox table, each amber lit frame holding one plain shape, a star, a building, a car, a clock, a tree, a figure, a boat, laid over the glow like a record being read frame by frame, slate grey table edges](assets/banner.png)
 
 ![Scene](scene.svg)
 
